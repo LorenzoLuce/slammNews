@@ -10,21 +10,14 @@ public class StreamingAnalyzer {
 
     /* returns all the tokenized entity-relations sentences of all the news of the stream */
     public static JavaRDD<ArrayList<String>> streamingAnalysis(JavaRDD<JSONObject> newsStream) {
-        return newsStream.map(new Function<JSONObject, String>() {
-            @Override
-            public String call(JSONObject json) {
-                return (String) ((JSONObject) json.get("_source")).get("articleBody");
-            }
-        })
-        .distinct()
-        .map(new Function<String, ArrayList<String>>() {
-            @Override
-            public ArrayList<String> call(String articleBody) {
-                try {
-                    return analizeSingleNews(articleBody);
-                } catch (IOException e) {}
-                return new ArrayList<String>();
-            }
+        return newsStream.map((json) -> {
+	        return (String) ((JSONObject) json.get("_source")).get("articleBody");
+        }).distinct()
+        .map((articleBody) -> {
+	        try {
+		        return analizeSingleNews(articleBody);
+            } catch (IOException e) {}
+            return new ArrayList<String>();
         });
     }
 
