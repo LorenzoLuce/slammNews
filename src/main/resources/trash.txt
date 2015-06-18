@@ -1,0 +1,143 @@
+/*
+			Settings settings = ImmutableSettings.settingsBuilder()
+					.put("cluster.name", "search6.localdomain").build(); // search6.localdomain opsworks-elasticsearch
+			Client client = new TransportClient(settings)
+					.addTransportAddress(new InetSocketTransportAddress("alfred:hosDFsGyBagVati[LYtCgV38@54.75.33.171", 80));
+
+			GetResponse response = client.prepareGet("news_production", "news", "1").execute().actionGet();
+*/
+					//response.getField("hits");
+
+					//System.out.println(response.toString());
+
+			/*
+			//sc.set("spark.serializer", KryoSerializer.class.getName());
+			System.out.println("prima di es.nodes 54..");
+// needed only when using the Java API
+			sc.set("es.nodes", "54.75.33.171:80");
+			sc.set("es.nodes.discovery", "false");
+			//sc.set("es.port", "80");
+			sc.set("es.net.http.auth.user", "alfred");
+			sc.set("es.net.http.auth.pass", "hosDFsGyBagVati[LYtCgV38");
+
+			sc.set("es.http.retries", "0");
+			sc.set("es.scroll.keepalive", "15s");
+			sc.set("es.http.timeout","5s");
+
+			System.out.println("dopo i vari set");
+			JavaSparkContext jsc = new JavaSparkContext(sc);
+
+			//JobConf conf = new JobConf();
+			//conf.set("es.resource", "news_production/news");
+			//conf.set("es.query", "?q=*");
+			//conf.set("es.nodes", "localhost:9200");
+			System.out.println("prima della query");
+			JavaRDD<Map<String, Object>> esRDD = JavaEsSpark.esRDD(jsc, "news_production/news", "?q=Apple").values(); //jsc.hadoopRDD(conf, EsInputFormat.class, Text.class, MapWritable.class);
+			System.out.println("dopo la query");
+			long docCount = esRDD.count();
+			System.out.println("il numero di documenti è " + docCount);
+
+				List<String> l=esRDD.map(new Function<Map<String,Object>,String>() {
+					@Override
+					public String call(Map<String,Object> s) {
+						String text = (String)(s.get("articleBody"));
+						System.out.println(text);
+						return text;
+					}
+				}).collect();
+				//j.saveAsObjectFile("ciao");
+				//l=  j.collect();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					ArrayList < ArrayList < String >> totalSentence = new ArrayList<ArrayList<String>>();
+				String sfinal = "";
+				FileWriter w;
+				w = new FileWriter("sentence.txt");
+			System.out.println("nanno");
+				for (String news : l) {
+					//System.out.println(sum);
+					//byte[] encoded = Files.readAllBytes(Paths.get("article"+sum+".txt"));
+					//String news = new String(encoded);
+
+					//Generator Array Stopwords
+					ArrayList<String> wordsList = new ArrayList<String>();
+					String sCurrentLine;
+					FileReader fr = new FileReader("stopword.txt");
+					BufferedReader br = new BufferedReader(fr);
+					while ((sCurrentLine = br.readLine()) != null)
+						wordsList.add(sCurrentLine);
+
+
+					//FileReader reader = new FileReader("json"+sum+".json");
+					JSONParser jsonParser = new JSONParser();
+					JSONObject jsonObject =null;
+					try {
+						jsonObject = (JSONObject) jsonParser.parse(RESTCallString.alchemyTextGetRelations(news));
+					}catch (Exception ex) {
+						//System.out.println("documenti "+saltato);
+						saltato ++;
+						continue;
+					}
+					//JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+					JSONArray lang = (JSONArray) jsonObject.get("relations");
+					Iterator i = lang.iterator();
+
+					String vecchia = "*";
+					// itera su tutte le sentence di una notizia
+					while (i.hasNext()) {
+						ArrayList<String> unique = new ArrayList<String>();
+						JSONObject innerObj = (JSONObject) i.next();
+						String se = (String) innerObj.get("sentence");
+						String t[] = se.split(" ");
+						String[] n = new String[t.length];
+
+						//must be UNIQUE! in unique transaction
+						for (int y = 0; y <= t.length - 1; y++) {
+							if ((!unique.contains(t[y])) & (!wordsList.contains(t[y]))) {
+								unique.add(t[y]);
+							}
+						}
+						String output = "";
+						//passa da array list unique (che contiene la sentence splittata " ") ad una stringa che contiene la sentence
+						for (int g = 0; g <= unique.size() - 1; g++) {
+							if (g == unique.size() - 1)
+								output = output.concat(unique.get(g));
+							else
+								output = output.concat(unique.get(g) + " ");
+						}
+						// spesso si trovano diverse sentece identiche SEQUENZIALMENTE
+						if (!vecchia.equals(output)) {
+							w.write(output + '\n');
+							sfinal+=output + '\n';
+							totalSentence.add(unique);
+
+						}
+						vecchia = output;
+						w.flush();
+					}
+
+				}
+			System .out.println("documenti saltati: "+ saltato+"/ "+ docCount);
+
+			JavaFPGrowthExample.apriori(totalSentence,jsc);
+
+				System.out.println(sfinal);
+
+			} catch (FileNotFoundException ex) {
+				ex.printStackTrace();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			*/

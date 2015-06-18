@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/lightray/Scrivania/terzoprogetto/jetm-1.2.3/lib/jetm-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/home/lightray/Scrivania/terzoprogetto/alchemyapi/dist/AlchemyAPI.jar"/>
+	<classpathentry kind="lib" path="/home/lightray/Scrivania/terzoprogetto/alchemyapi/dist/AlchemyAPI-Entity-Test.jar"/>
+	<classpathentry kind="lib" path="/home/lightray/Scrivania/terzoprogetto/alchemyapi/dist/AlchemyAPI-Relations-Test.jar"/>
+	<classpathentry kind="lib" path="/usr/lib/apache-opennlp-1.5.3/lib/jwnl-1.3.3.jar"/>
+	<classpathentry kind="lib" path="/usr/lib/apache-opennlp-1.5.3/lib/opennlp-maxent-3.0.3.jar"/>
+	<classpathentry kind="lib" path="/usr/lib/apache-opennlp-1.5.3/lib/opennlp-tools-1.5.3.jar"/>
+	<classpathentry kind="lib" path="/usr/lib/apache-opennlp-1.5.3/lib/opennlp-uima-1.5.3.jar"/>
+	<classpathentry kind="lib" path="/home/lightray/Scrivania/terzoprogetto/stanford-ner-2015-04-20/stanford-ner.jar"/>
+	<classpathentry kind="lib" path="/home/lightray/Scrivania/terzoprogetto/stanford-ner-2015-04-20/stanford-ner-3.5.2.jar"/>
+	<classpathentry kind="lib" path="/home/lightray/Scrivania/terzoprogetto/stanford-ner-2015-04-20/stanford-ner-3.5.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="/home/lightray/Scrivania/terzoprogetto/stanford-ner-2015-04-20/stanford-ner-3.5.2-sources.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
