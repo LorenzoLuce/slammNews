@@ -14,13 +14,11 @@ public class ParallelizedApriori {
     static final int numPartition = 0.1;
 
     public static void discover(JavaRDD<ArrayList<String>> transactions) throws IOException {
-        FPGrowthModel<String> model = new FPGrowth().setMinSupport(minSupport).setNumPartitions(numPartition).run(transactions);
-        RDD<FPGrowth.FreqItemset<String>> rdd = model.freqItemsets();
-        JavaRDD<FPGrowth.FreqItemset<String>> javardd = teta.toJavaRDD();
-        javardd.map((s) -> {
-	        return ElasticFacade.indexAnalysis(Joiner.on(",").join(s.javaItems()), s.freq());
-        }).reduce((s,s1) -> { 
-            return s.concat(s1); 
+        FPGrowthModel<String> model = new FPGrowth().setMinSupport(MINSUPPORT)
+        	.setNumPartitions(NUMPARTITION).run(transactions);
+        JavaRDD<FPGrowth.FreqItemset<String>> javardd = model.freqItemsets().toJavaRDD();
+        javardd.forEach((s) -> {
+	        ElasticFacade.indexAnalysis(Joiner.on(",").join(s.javaItems()), s.freq());
         });
     }
 }
